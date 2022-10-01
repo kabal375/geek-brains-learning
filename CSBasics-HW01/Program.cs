@@ -10,6 +10,10 @@ while (choice != 5) {
         maxOfTwo();
     } else if (choice == 2) {
         maxOfThree();
+    } else if (choice == 3) {
+        isNumberEven();
+    } else if (choice == 4) {
+        showEvenNumbers();
     }
 }
 
@@ -25,7 +29,7 @@ void showMenu() {
 
 
 void maxOfTwo() {
-    //
+    //  Напишите программу, которая на вход принимает два числа и выдаёт, какое число большее, а какое меньшее.
     Console.WriteLine("Введите первое число:");
     int n1 = Convert.ToInt32(Console.ReadLine());
     Console.WriteLine("Введите второе число:");
@@ -40,7 +44,7 @@ void maxOfTwo() {
 }
 
 void maxOfThree() {
-    //
+    // Напишите программу, которая принимает на вход три числа и выдаёт максимальное из этих чисел.
     Console.WriteLine("Введите первое число:");
     int n1 = Convert.ToInt32(Console.ReadLine());
     Console.WriteLine("Введите второе число:");
@@ -57,4 +61,37 @@ void maxOfThree() {
 
     Console.WriteLine("Нажмите Enter для продолжения");
     Console.ReadLine();
+}
+
+void isNumberEven() {
+    // Напишите программу, которая на вход принимает число и выдаёт, 
+    // является ли число чётным (делится ли оно на два без остатка).
+    Console.WriteLine("Введите число:");
+    int n = Convert.ToInt32(Console.ReadLine());
+
+    if (n % 2 == 0) Console.WriteLine("да");
+    else Console.WriteLine("нет");
+
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
+}
+
+void showEvenNumbers(){
+    //Напишите программу, которая на вход принимает число (N), а на выходе показывает все чётные числа от 1 до N.
+    Console.WriteLine("Введите число, большее 1:");
+    int n = Convert.ToInt32(Console.ReadLine());
+
+    if (n <= 1) Console.WriteLine("Число меньше 1");
+    else {
+        int evenNumber = 2;
+        while (evenNumber <= n-2) {
+            Console.Write(evenNumber + ", ");
+            evenNumber += 2;
+        }
+        Console.WriteLine(evenNumber);
+    }
+    
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
+
 }

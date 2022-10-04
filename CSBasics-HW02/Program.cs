@@ -16,7 +16,7 @@ while (choice != 4)
     }
     else if (choice == 3)
     {
-        //
+        IsItWeekEnd();
     }
 }
 
@@ -57,6 +57,22 @@ void ShowThirdDigit()
     {
         Console.WriteLine(n[2]);
     }
+
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
+
+}
+
+void IsItWeekEnd()
+// Напишите программу, которая принимает на вход цифру, обозначающую день недели, 
+// и проверяет, является ли этот день выходным.
+{
+    Console.WriteLine("Введите номер дня недели:");
+    int n = Convert.ToInt32(Console.ReadLine());
+
+    if (n > 0 && n < 6) Console.WriteLine("Нет");
+    else if (n > 5 && n < 8) Console.WriteLine("Да");
+    else Console.WriteLine("Не день недели!");
 
     Console.WriteLine("Нажмите Enter для продолжения");
     Console.ReadLine();

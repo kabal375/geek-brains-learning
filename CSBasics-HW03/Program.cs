@@ -14,11 +14,13 @@ while (choice != 4)
 
     if (choice == 1)
     {
-        CheckStringForPalyndrom();
+        Task1();
     }
     else if (choice == 2)
     {
-        //
+        // Console.WriteLine(Find3Ddistance(3,6,8,2,1,-7));
+        // Console.WriteLine(Find3Ddistance(7,-5,0,1,-1,9));
+        Task2();
     }
     else if (choice == 3)
     {
@@ -31,7 +33,7 @@ void showMenu()
     Console.Clear();
 
     Console.WriteLine("1 - Проверка строки на палиндром");
-    Console.WriteLine("2 - Третья цифра числа (если есть)");
+    Console.WriteLine("2 - Расстояние между точками в 3D");
     Console.WriteLine("3 - День недели");
     Console.WriteLine("4 - Выход");
 
@@ -56,7 +58,7 @@ Boolean IsPalyndrom(string phrase, int shift = 0)
 
 }
 
-void CheckStringForPalyndrom()
+void Task1()
 {
     Console.WriteLine("Введите строку (число):");
     string s = Console.ReadLine();
@@ -67,3 +69,26 @@ void CheckStringForPalyndrom()
     Console.WriteLine("Нажмите Enter для продолжения");
     Console.ReadLine();
 }
+
+
+double Find3Ddistance(double ax, double ay, double az, double bx, double by, double bz)
+{
+    return Math.Round(Math.Sqrt(Math.Pow((bx - ax),2) + Math.Pow((by - ay),2) + Math.Pow((bz - az),2)), 2);
+}
+
+ void Task2()
+ {
+    Console.WriteLine("Введите координаты точки А:");
+    double ax = Convert.ToDouble(Console.ReadLine());
+    double ay = Convert.ToDouble(Console.ReadLine());
+    double az = Convert.ToDouble(Console.ReadLine());
+    Console.WriteLine("Введите координаты точки B:");
+    double bx = Convert.ToDouble(Console.ReadLine());
+    double by = Convert.ToDouble(Console.ReadLine());
+    double bz = Convert.ToDouble(Console.ReadLine());
+
+    Console.WriteLine(Find3Ddistance(ax, ay, az, bx, by, bz));
+
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
+ }

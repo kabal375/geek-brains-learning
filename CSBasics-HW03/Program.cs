@@ -1,9 +1,4 @@
-﻿// Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
-
-// Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
-
-// Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.
-
+﻿
 int choice = 0;
 
 while (choice != 4)
@@ -24,7 +19,7 @@ while (choice != 4)
     }
     else if (choice == 3)
     {
-        //
+        Task3();
     }
 }
 
@@ -34,7 +29,7 @@ void showMenu()
 
     Console.WriteLine("1 - Проверка строки на палиндром");
     Console.WriteLine("2 - Расстояние между точками в 3D");
-    Console.WriteLine("3 - День недели");
+    Console.WriteLine("3 - Список кубов чисел от 1 до N");
     Console.WriteLine("4 - Выход");
 
 }
@@ -59,6 +54,8 @@ Boolean IsPalyndrom(string phrase, int shift = 0)
 }
 
 void Task1()
+// Напишите программу, которая принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
+
 {
     Console.WriteLine("Введите строку (число):");
     string s = Console.ReadLine();
@@ -77,6 +74,8 @@ double Find3Ddistance(double ax, double ay, double az, double bx, double by, dou
 }
 
  void Task2()
+// Напишите программу, которая принимает на вход координаты двух точек и находит расстояние между ними в 3D пространстве.
+
  {
     Console.WriteLine("Введите координаты точки А:");
     double ax = Convert.ToDouble(Console.ReadLine());
@@ -92,3 +91,24 @@ double Find3Ddistance(double ax, double ay, double az, double bx, double by, dou
     Console.WriteLine("Нажмите Enter для продолжения");
     Console.ReadLine();
  }
+
+ void Task3()
+ {
+    // Напишите программу, которая принимает на вход число (N) и выдаёт таблицу кубов чисел от 1 до N.    
+    
+    Console.WriteLine("Введите число, большее 1:");
+    int n = Convert.ToInt32(Console.ReadLine());
+
+    if (n <= 1) Console.WriteLine("Число меньше 1");
+    else {
+        int cube = 1;
+        for (cube = 1; cube < n; cube++) {
+            Console.Write(Math.Pow(cube, 3) + ", ");
+        }
+        Console.WriteLine(Math.Pow(cube, 3));
+    }
+    
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
+
+}

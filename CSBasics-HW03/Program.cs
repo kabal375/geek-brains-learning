@@ -1,7 +1,7 @@
 ﻿
 int choice = 0;
 
-while (choice != 4)
+while (choice != 5)
 {
     showMenu();
     choice = Convert.ToInt32(Console.ReadLine());
@@ -21,6 +21,11 @@ while (choice != 4)
     {
         Task3();
     }
+    else if (choice == 4)
+    {
+        OptionalTask();
+    }
+
 }
 
 void showMenu()
@@ -30,7 +35,8 @@ void showMenu()
     Console.WriteLine("1 - Проверка строки на палиндром");
     Console.WriteLine("2 - Расстояние между точками в 3D");
     Console.WriteLine("3 - Список кубов чисел от 1 до N");
-    Console.WriteLine("4 - Выход");
+    Console.WriteLine("4 - Сбор ягод с кустов (опциональная задача)");
+    Console.WriteLine("5 - Выход");
 
 }
 
@@ -111,4 +117,43 @@ double Find3Ddistance(double ax, double ay, double az, double bx, double by, dou
     Console.WriteLine("Нажмите Enter для продолжения");
     Console.ReadLine();
 
+}
+
+void OptionalTask()
+{
+    int bushCount = new Random().Next(3, 1001);
+    int[] berries = new int[bushCount];
+
+    for (int i = 0; i < bushCount; i++)
+    {
+        berries[i] = new Random().Next(1, 1001);
+    } 
+
+    Console.WriteLine($"Число кустов: {bushCount}");
+    Console.WriteLine($"[{string.Join(", ", berries)}]");
+    Console.WriteLine();
+    Console.WriteLine($"Максимальное количество ягод: {FindMaxBerriesAmount(berries)}");
+
+
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
+}
+
+int FindMaxBerriesAmount(int[] array)
+{
+    int maxAmount = 0, berriesAmount = 0, centralBush = 0;
+
+    for (int i = 1; i < array.Length-1; i++) 
+    {
+        berriesAmount = array[i - 1] + array[i] + array[i + 1];
+        if (berriesAmount > maxAmount) 
+        {
+            maxAmount = berriesAmount;
+            centralBush = i + 1;
+        }
+
+    }
+
+    Console.WriteLine("Куст № " + centralBush);
+    return maxAmount;
 }

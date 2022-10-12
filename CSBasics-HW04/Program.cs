@@ -1,6 +1,4 @@
-﻿// Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
-
-int choice = 0;
+﻿int choice = 0;
 
 while (choice != 4)
 {
@@ -18,7 +16,7 @@ while (choice != 4)
     }
     else if (choice == 3)
     {
-       // Task3();
+        Task3();
     }
 }
 
@@ -89,4 +87,17 @@ int GetSumOfDigits(int number)
     }
 
     return sum;
+}
+
+void Task3()
+// Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+{
+    Console.Write("Введите несколько символов через запятую: ");
+
+    string[] elements = Console.ReadLine().Split(',');
+
+    Console.WriteLine($"[{string.Join(", ", elements)}]");
+
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
 }

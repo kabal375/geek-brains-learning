@@ -1,9 +1,4 @@
-﻿// Задача 25: Напишите цикл, который принимает на вход два числа (A и B) 
-// и возводит число A в натуральную степень B.
-
-// Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
-
-// Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
+﻿// Задача 29: Напишите программу, которая задаёт массив из 8 элементов и выводит их на экран.
 
 int choice = 0;
 
@@ -19,7 +14,7 @@ while (choice != 4)
     }
     else if (choice == 2)
     {
-       // Task2();
+        Task2();
     }
     else if (choice == 3)
     {
@@ -38,6 +33,22 @@ void showMenu()
 
 }
 
+void Task1()
+// Задача 25: Напишите цикл, который принимает на вход два числа (A и B) 
+// и возводит число A в натуральную степень B.
+
+{
+    Console.Write("Введите число (любое): ");
+    double number = Convert.ToDouble(Console.ReadLine());
+    Console.Write("Введите степень (целое число): ");
+    int power = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine(CustomPow(number, power));
+
+    Console.WriteLine("Нажмите Enter для продолжения");
+    Console.ReadLine();
+}
+
 double CustomPow(double number, int power)
 {
     double result = number;
@@ -53,15 +64,29 @@ double CustomPow(double number, int power)
     return result;
 }
 
-void Task1()
+void Task2()
+// Задача 27: Напишите программу, которая принимает на вход число и выдаёт сумму цифр в числе.
 {
-    Console.Write("Введите число (любое): ");
-    double number = Convert.ToDouble(Console.ReadLine());
-    Console.Write("Введите степень (целое число): ");
-    int power = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Введите число: ");
+    int number = Convert.ToInt32(Console.ReadLine());
 
-    Console.WriteLine(CustomPow(number, power));
+    Console.WriteLine(GetSumOfDigits(number));
 
     Console.WriteLine("Нажмите Enter для продолжения");
     Console.ReadLine();
+
+}
+
+int GetSumOfDigits(int number)
+{
+    int n = Math.Abs(number);
+    int sum = 0;
+
+    while (n > 0) 
+    {
+        sum += n % 10;
+        n = n / 10;
+    }
+
+    return sum;
 }

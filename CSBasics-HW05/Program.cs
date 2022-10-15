@@ -1,6 +1,6 @@
 ﻿int choice = 0;
 
-while (choice != 5)
+while (choice != 6)
 {
     showMenu();
     choice = Convert.ToInt32(Console.ReadLine());
@@ -47,7 +47,20 @@ while (choice != 5)
     }
     else if (choice == 4)
     {
-//        OptionalTask();
+    // Задана последовательность натуральных чисел, завершающаяся числом 0. 
+    // Требуется определить значение второго по величине элемента в этой последовательности, 
+    // то есть элемента, который будет наибольшим, если из последовательности удалить наибольший элемент.
+        int arrSize = new Random().Next(3, 101);
+        int[] array4 = CreateRandomIntArray(n: arrSize, min: -100, max: 100);
+        array4[array4.Length - 1] = 0;
+
+        Console.WriteLine($"[{string.Join(", ", array4)}]");
+
+        Console.WriteLine($"{FindSecondMax(array4)}");
+
+        ShowPressAnyKey();
+
+
     }
 
 }
@@ -59,8 +72,9 @@ void showMenu()
     Console.WriteLine("1 - Количество чётных чисел в массиве");
     Console.WriteLine("2 - Сумма элементов на нечётных позициях массива");
     Console.WriteLine("3 - Разница между Max и Min массива");
-    Console.WriteLine("4 - ...");
-    Console.WriteLine("5 - Выход");
+    Console.WriteLine("4 - Второй максимум массива");
+    Console.WriteLine("5 - ...");
+    Console.WriteLine("6 - Выход");
 
 }
 
@@ -118,7 +132,7 @@ int ArrEvenCount(int[] array)
 double FindMaxMinDifference(double[] array)
 {
     //double difference = 0;
-    double max = 0, min = 0;
+    double max = array[0], min = array[0];
 
     foreach (double d in array)
     {
@@ -127,4 +141,21 @@ double FindMaxMinDifference(double[] array)
     }
 
     return max - min;
+}
+
+int FindSecondMax(int[] array)
+{
+    int firstMax = array[0], secondMax = array[0];
+
+    foreach (int n in array)
+    {
+        if (n > firstMax) 
+        {
+            secondMax = firstMax;
+            firstMax = n;
+        }
+        else if (n > secondMax) secondMax = n;
+    }
+
+    return secondMax;
 }

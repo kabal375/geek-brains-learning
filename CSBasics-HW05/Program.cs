@@ -8,8 +8,8 @@ while (choice != 6)
 
     if (choice == 1)
     {
-    // Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. 
-    // Напишите программу, которая покажет количество чётных чисел в массиве.
+        // Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. 
+        // Напишите программу, которая покажет количество чётных чисел в массиве.
 
         int[] array1 = CreateRandomIntArray(max: 1001, min: 100);
         Console.WriteLine($"[{string.Join(", ", array1)}]");
@@ -20,9 +20,9 @@ while (choice != 6)
     }
     else if (choice == 2)
     {
-    // Задача 36: Задайте одномерный массив, заполненный случайными числами. 
-    // Найдите сумму элементов, стоящих на нечётных позициях.
-        
+        // Задача 36: Задайте одномерный массив, заполненный случайными числами. 
+        // Найдите сумму элементов, стоящих на нечётных позициях.
+
         int[] array2 = CreateRandomIntArray();
         Console.WriteLine($"[{string.Join(", ", array2)}]");
 
@@ -33,8 +33,8 @@ while (choice != 6)
     }
     else if (choice == 3)
     {
-    // Задача 38: Задайте массив вещественных чисел. 
-    // Найдите разницу между максимальным и минимальным элементов массива.
+        // Задача 38: Задайте массив вещественных чисел. 
+        // Найдите разницу между максимальным и минимальным элементов массива.
 
         double[] array3 = CreateRandomDoubleArray();
         Console.WriteLine($"[{string.Join(", ", array3)}]");
@@ -47,9 +47,9 @@ while (choice != 6)
     }
     else if (choice == 4)
     {
-    // Задана последовательность натуральных чисел, завершающаяся числом 0. 
-    // Требуется определить значение второго по величине элемента в этой последовательности, 
-    // то есть элемента, который будет наибольшим, если из последовательности удалить наибольший элемент.
+        // Задана последовательность натуральных чисел, завершающаяся числом 0. 
+        // Требуется определить значение второго по величине элемента в этой последовательности, 
+        // то есть элемента, который будет наибольшим, если из последовательности удалить наибольший элемент.
         int arrSize = new Random().Next(3, 101);
         int[] array4 = CreateRandomIntArray(n: arrSize, min: -100, max: 100);
         array4[array4.Length - 1] = 0;
@@ -60,6 +60,24 @@ while (choice != 6)
 
         ShowPressAnyKey();
 
+    }
+
+    else if (choice == 5)
+    {
+        // Дана последовательность из N целых чисел и число K. 
+        // Необходимо сдвинуть всю последовательность (сдвиг - циклический) 
+        // на |K| элементов вправо, если K – положительное и влево, если отрицательное.
+
+        int[] array5 = CreateRandomIntArray(min: 0);
+
+        Console.WriteLine($"[{string.Join(", ", array5)}]");
+
+        Console.Write("Введите число: ");
+        int k = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine($"[{string.Join(", ", ShiftArray(array5, k))}]");
+
+        ShowPressAnyKey();
 
     }
 
@@ -73,7 +91,7 @@ void showMenu()
     Console.WriteLine("2 - Сумма элементов на нечётных позициях массива");
     Console.WriteLine("3 - Разница между Max и Min массива");
     Console.WriteLine("4 - Второй максимум массива");
-    Console.WriteLine("5 - ...");
+    Console.WriteLine("5 - Суперсдвиг");
     Console.WriteLine("6 - Выход");
 
 }
@@ -86,7 +104,7 @@ void ShowPressAnyKey()
 
 int[] CreateRandomIntArray(int n = 0, int min = -10, int max = 10)
 {
-    if (n == 0) n = new Random().Next(5,11);
+    if (n == 0) n = new Random().Next(5, 11);
 
     int[] arr = new int[n];
 
@@ -97,7 +115,7 @@ int[] CreateRandomIntArray(int n = 0, int min = -10, int max = 10)
 
 double[] CreateRandomDoubleArray(int n = 0, int min = -10000, int max = 10000)
 {
-    if (n == 0) n = new Random().Next(5,11);
+    if (n == 0) n = new Random().Next(5, 11);
 
     double[] arr = new double[n];
 
@@ -149,7 +167,7 @@ int FindSecondMax(int[] array)
 
     foreach (int n in array)
     {
-        if (n > firstMax) 
+        if (n > firstMax)
         {
             secondMax = firstMax;
             firstMax = n;
@@ -158,4 +176,33 @@ int FindSecondMax(int[] array)
     }
 
     return secondMax;
+}
+
+int[] ShiftArray(int[] array, int k)
+{
+    bool shiftRight = (k >= 0);
+
+    int l = array.Length;
+
+    k = Math.Abs(k);
+    if (k > l) k = k % l;
+
+    int[] shiftedArr = new int[l];
+
+
+    for (int i = 0; i < l; i++)
+    {
+        if (shiftRight)
+        {
+            if (i + k > l - 1) shiftedArr[i + k - l] = array[i];
+            else shiftedArr[i + k] = array[i];
+        }
+        else
+        {
+            if (i - k < 0) shiftedArr[i - k + l] = array[i];
+            else shiftedArr[i - k] = array[i];
+        }
+    }
+
+    return shiftedArr;
 }

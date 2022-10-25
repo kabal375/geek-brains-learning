@@ -11,7 +11,7 @@ while (choice != 4)
     if (choice == 1)
     {  // Задача 47. Задайте двумерный массив размером m×n, заполненный случайными вещественными числами.
 
-        
+
         ShowDouble2DimArray(CreateRandomDouble2DimArray());
         ShowPressAnyKey();
 
@@ -20,7 +20,7 @@ while (choice != 4)
     {
         // Задача 50. Напишите программу, которая на вход принимает позиции элемента в двумерном массиве, 
         // и возвращает значение этого элемента или же указание, что такого элемента нет.
-        
+
         double[,] arr1 = CreateRandomDouble2DimArray();
         ShowDouble2DimArray(arr1);
 
@@ -31,12 +31,12 @@ while (choice != 4)
 
         try
         {
-            Console.WriteLine(arr1[i-1, j-1]);
+            Console.WriteLine(arr1[i - 1, j - 1]);
         }
         catch (System.IndexOutOfRangeException)
         {
             Console.WriteLine("Позиции указаны некорректно!");
-           // throw;
+            // throw;
         }
         ShowPressAnyKey();
     }
@@ -44,7 +44,19 @@ while (choice != 4)
     else if (choice == 3)
     {
         // Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+        int[,] arr2 = CreateRandomInt2DimArray();
+        ShowInt2DimArray(arr2);
 
+        Console.WriteLine("Средние значения по колонкам: ");
+
+        for (int i = 0; i < arr2.GetLength(1); i++)
+        {
+            Console.Write(FindIntArrayColumnAvg(arr2, i) + " ");
+        }
+
+        Console.WriteLine();
+
+        ShowPressAnyKey();
 
     }
 
@@ -103,8 +115,8 @@ void ShowInt2DimArray(int[,] arr)
     {
         for (int j = 0; j < arr.GetLength(1); j++)
         {
-            if (arr[i, j] < 0) addSpace = " "; 
-            else addSpace = "";
+            if (arr[i, j] < 0) addSpace = "";
+            else addSpace = " ";
             Console.Write(addSpace + arr[i, j] + " ");
         }
         Console.WriteLine();
@@ -118,7 +130,7 @@ void ShowDouble2DimArray(double[,] arr)
     {
         for (int j = 0; j < arr.GetLength(1); j++)
         {
-            if (arr[i, j] < 0) addSpace = ""; 
+            if (arr[i, j] < 0) addSpace = "";
             else addSpace = " ";
             Console.Write(addSpace + arr[i, j] + " ");
         }
@@ -126,3 +138,13 @@ void ShowDouble2DimArray(double[,] arr)
     }
 }
 
+double FindIntArrayColumnAvg(int[,] arr, int colNo)
+{
+    double sum = 0;
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        sum += arr[i, colNo];
+    }
+
+    return sum / arr.GetLength(0);
+}

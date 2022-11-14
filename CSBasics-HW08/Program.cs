@@ -22,7 +22,7 @@ while (choice != 6)
     else if (choice == 3)
     {
         // Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-
+        Task3();
     }
     else if (choice == 4)
     {
@@ -170,4 +170,43 @@ int FindRowWithMinSum(int[,] matrix)
         }
 
     return rowNumber + 1;
+}
+
+// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+void Task3()
+{
+    int[,] firstMatrix = CreateRandomInt2DimArray(3, 3);
+    Console.WriteLine("Исходный массив 1:");
+    ShowInt2DimArray(firstMatrix);
+    Console.WriteLine();
+    //Thread.Sleep(100);
+    int[,] secondMatrix = CreateRandomInt2DimArray(3, 3);
+    Console.WriteLine("Исходный массив 2:");
+    ShowInt2DimArray(secondMatrix);
+    Console.WriteLine();
+    
+    int[,] resultMatrix = MultiplyMatrices(firstMatrix, secondMatrix);
+
+    ShowInt2DimArray(resultMatrix);
+
+    ShowPressAnyKey();
+}
+
+
+int[,] MultiplyMatrices(int[,] firstMatrix, int[,] secondMatrix)
+{
+    int[,] resultMatrix = new int[firstMatrix.GetLength(0), secondMatrix.GetLength(0)];
+
+    for (int i = 0; i < firstMatrix.GetLength(0); i++)
+    {
+        for (int j = 0; j < secondMatrix.GetLength(1); j++)
+        {
+            for (int k = 0; k < secondMatrix.GetLength(0); k++)
+            {
+                resultMatrix[i, j] += firstMatrix[i, k] * secondMatrix[k, j];
+            }
+        }
+    }
+
+    return resultMatrix;
 }

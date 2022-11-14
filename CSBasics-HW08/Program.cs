@@ -28,7 +28,7 @@ while (choice != 6)
     {
         // Задача 60...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
         // Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
-
+        Task4();
     }
     else if (choice == 5)
     {
@@ -184,7 +184,7 @@ void Task3()
     Console.WriteLine("Исходный массив 2:");
     ShowInt2DimArray(secondMatrix);
     Console.WriteLine();
-    
+
     int[,] resultMatrix = MultiplyMatrices(firstMatrix, secondMatrix);
 
     ShowInt2DimArray(resultMatrix);
@@ -209,4 +209,32 @@ int[,] MultiplyMatrices(int[,] firstMatrix, int[,] secondMatrix)
     }
 
     return resultMatrix;
+}
+
+// Задача 60...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
+// Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+void Task4()
+{
+    int n = 3;
+    int m = 3;
+    int l = 3;
+
+    int v = 0;
+
+    int[,,] arr = new int[n, m, l];
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+            for (int k = 0; k < l; k++)
+            {
+                v++;
+                arr[i, j, k] = v;
+
+                Console.Write($"{arr[i, j, k]}({i},{j},{k}) ");
+            }
+        Console.WriteLine();
+    }
+    ShowPressAnyKey();
+    //return arr;
 }

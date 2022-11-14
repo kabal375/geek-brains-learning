@@ -33,7 +33,7 @@ while (choice != 6)
     else if (choice == 5)
     {
         // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
-
+        Task5();
     }
 
 }
@@ -237,4 +237,40 @@ void Task4()
     }
     ShowPressAnyKey();
     //return arr;
+}
+
+// Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+void Task5()
+{
+    int n = 4;
+
+    int[,] arr = new int[n, n];
+
+    int v = 0;
+    int count = n;
+    int value = -n;
+    int sum = -1;
+
+    do
+    {
+        value = -1 * value / n;
+        for (int i = 0; i < count; i++)
+        {
+            sum += value;
+            arr[sum / n, sum % n] = ++v;
+        }
+        value *= n;
+        count--;
+        for (int i = 0; i < count; i++)
+        {
+            sum += value;
+            arr[sum / n, sum % n] = ++v;
+        }
+    } while (count > 0);
+
+
+    ShowInt2DimArray(arr);
+
+    ShowPressAnyKey();
+
 }

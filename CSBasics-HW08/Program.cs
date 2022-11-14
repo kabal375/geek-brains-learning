@@ -7,7 +7,7 @@ while (choice != 6)
     Console.WriteLine("Ok");
 
     if (choice == 1)
-    {  
+    {
         // Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию 
         // элементы каждой строки двумерного массива.
         Task1();
@@ -16,6 +16,7 @@ while (choice != 6)
     {
         // Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, 
         // которая будет находить строку с наименьшей суммой элементов.
+        Task2();
     }
 
     else if (choice == 3)
@@ -88,7 +89,7 @@ void ShowInt2DimArray(int[,] arr)
 
 // Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию 
 // элементы каждой строки двумерного массива.
-void Task1() 
+void Task1()
 
 {
     int[,] arr1 = CreateRandomInt2DimArray(5, 5);
@@ -108,18 +109,65 @@ void Task1()
 
 void SortRows(int[,] matrix)
 {
-  for (int i = 0; i < matrix.GetLength(0); i++)
-  {
-    for (int k = 0; k < matrix.GetLength(1); k++)
-      for (int j = 0; j < matrix.GetLength(1) - k - 1; j++)
-        if (matrix[i, j] < matrix[i, j + 1])
-        {
-          // swap temp and arr[i]
-          int temp = matrix[i, j];
-          matrix[i, j] = matrix[i, j + 1];
-          matrix[i, j + 1] = temp;
-        }
-  }
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        for (int k = 0; k < matrix.GetLength(1); k++)
+            for (int j = 0; j < matrix.GetLength(1) - k - 1; j++)
+                if (matrix[i, j] < matrix[i, j + 1])
+                {
+                    // swap temp and arr[i]
+                    int temp = matrix[i, j];
+                    matrix[i, j] = matrix[i, j + 1];
+                    matrix[i, j + 1] = temp;
+                }
+    }
 
 }
 
+// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, 
+// которая будет находить строку с наименьшей суммой элементов.
+void Task2()
+{
+    int[,] arr2 = CreateRandomInt2DimArray(5, 5);
+
+    Console.WriteLine("Исходный массив:");
+    ShowInt2DimArray(arr2);
+
+    Console.WriteLine($"Строка с минимальной суммой элементов: {FindRowWithMinSum(arr2)}");
+
+    ShowPressAnyKey();
+
+}
+
+int FindRowWithMinSum(int[,] matrix)
+{
+    int rowSumMin = 0;
+    for (int k = 0; k < matrix.GetLength(1); k++)
+    {
+        rowSumMin += matrix[0, k];
+    }
+
+    int rowSum = 0;
+    int rowNumber = 0;
+
+    if (matrix.GetLength(0) > 1)
+        for (int i = 1; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                rowSum += matrix[i, j];
+            }
+
+            if (rowSum < rowSumMin)
+            {
+                rowSumMin = rowSum;
+                rowNumber = i;
+            }
+
+            // Console.WriteLine($"Сумма элементов строки {i+1}: {rowSum}");
+            rowSum = 0;
+
+        }
+
+    return rowNumber + 1;
+}
